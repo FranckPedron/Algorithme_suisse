@@ -48,3 +48,10 @@ def show_goups(s1, s2):
         show_player(joueur)
 
 
+def play_game(s1,s2):
+    turns = min(len(s1), len(s2))
+    print("\nListe des matchs:")
+    for i in range(turns):
+        print(f"Match {i + 1}: {s1[i]['first_name']} vs {s2[i]['first_name']}")
+
+
