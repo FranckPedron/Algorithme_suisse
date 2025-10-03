@@ -21,3 +21,16 @@ def sort_players(joueurs):
     return sorted(joueurs, key=lambda joueur: joueur["elo_points"], reverse=True)
 
 
+def groups_def(joueurs):
+    n = len(joueurs)
+    s1 = []
+    s2 = []
+    for i in range(n):
+        if i < n / 2:
+            s1.append(joueurs[i])
+        else:
+            s2.append(joueurs[i])
+
+    return s1, s2
+
+
