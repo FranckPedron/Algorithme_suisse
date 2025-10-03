@@ -18,7 +18,7 @@ def load_players(file_path="joueurs.json"):
 
 
 def sort_players(joueurs):
-    return sorted(joueurs, key=lambda joueur: joueur["elo_points"], reverse=True)
+    return sorted(joueurs, key=lambda joueur: joueur["elo_points"], reverse=False)
 
 
 def groups_def(joueurs):
@@ -32,5 +32,19 @@ def groups_def(joueurs):
             s2.append(joueurs[i])
 
     return s1, s2
+
+
+def show_player(joueur):
+    print(f"{joueur['first_name']} - {joueur['last_name']} - {joueur['elo_points']} points")
+
+
+def show_goups(s1, s2):
+    print("Groupe 1:")
+    for joueur in s1:
+        show_player(joueur)
+
+    print("\nGroupe 2:")
+    for joueur in s2:
+        show_player(joueur)
 
 
