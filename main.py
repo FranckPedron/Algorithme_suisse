@@ -1,7 +1,7 @@
 import json
 
 
-def load_players(file_path="joueurs.json"):
+def load_players(file_path):
     try:
         with open(file_path, "r") as file:
             joueurs = json.load(file)
@@ -56,7 +56,7 @@ def play_game(s1, s2):
 
 
 def game():
-    joueurs = load_players()
+    joueurs = load_players("./joueurs.json")
     sorted_joueurs = sort_players(joueurs)
     s1, s2 = groups_def(sorted_joueurs)
     show_goups(s1, s2)
