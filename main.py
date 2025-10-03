@@ -17,3 +17,7 @@ def load_players(file_path="joueurs.json"):
         return []
 
 
+def sort_players(joueurs):
+    return sorted(joueurs, key=lambda joueur: joueur["elo_points"], reverse=True)
+
+
