@@ -1,4 +1,5 @@
 import json
+from os import NGROUPS_MAX
 
 
 def load_players(file_path):
@@ -22,14 +23,9 @@ def sort_players(joueurs):
 
 
 def groups_def(joueurs):
-    n = len(joueurs)
-    s1 = []
-    s2 = []
-    for i in range(n):
-        if i < n / 2:
-            s1.append(joueurs[i])
-        else:
-            s2.append(joueurs[i])
+    groups_size = len(joueurs)//2
+    s1 = joueurs[:groups_size]
+    s2 = joueurs[groups_size:]
 
     return s1, s2
 
@@ -50,13 +46,17 @@ def show_goups(s1, s2):
 
 def play_game(s1, s2):
     turns = min(len(s1), len(s2))
+    matches = []
     print("\nListe des matchs:")
     for i in range(turns):
+        matches.append((s1[i], s2[i]))
         print(f"Match {i + 1}: {s1[i]['first_name']} vs {s2[i]['first_name']}")
+    with open("./data/matches.json", "w") as file:
+        json.dump(matches, file, indent=4)
 
 
 def game():
-    joueurs = load_players("./joueurs.json")
+    joueurs = load_players("./data/joueurs.json")
     sorted_joueurs = sort_players(joueurs)
     s1, s2 = groups_def(sorted_joueurs)
     show_goups(s1, s2)
